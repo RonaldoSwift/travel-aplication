@@ -13,6 +13,7 @@
 		FBC9AF0D260026C9008E3231 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBC9AF0C260026C9008E3231 /* Preview Assets.xcassets */; };
 		FBC9AF18260026CA008E3231 /* travel_aplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC9AF17260026CA008E3231 /* travel_aplicationTests.swift */; };
 		FBC9AF23260026CA008E3231 /* travel_aplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC9AF22260026CA008E3231 /* travel_aplicationUITests.swift */; };
+		FBC9AF44260416F9008E3231 /* travel_aplication2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC9AF43260416F9008E3231 /* travel_aplication2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		FBC9AF1E260026CA008E3231 /* travel-aplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "travel-aplicationUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC9AF22260026CA008E3231 /* travel_aplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = travel_aplicationUITests.swift; sourceTree = "<group>"; };
 		FBC9AF24260026CA008E3231 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBC9AF43260416F9008E3231 /* travel_aplication2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = travel_aplication2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +97,7 @@
 		FBC9AF04260026C5008E3231 /* travel-aplication */ = {
 			isa = PBXGroup;
 			children = (
-				FBC9AF05260026C5008E3231 /* travel_aplicationApp.swift */,
-				FBC9AF07260026C5008E3231 /* ContentView.swift */,
+				FBC9AF42260416BB008E3231 /* TravelAplication */,
 				FBC9AF09260026C9008E3231 /* Assets.xcassets */,
 				FBC9AF0E260026C9008E3231 /* Info.plist */,
 				FBC9AF0B260026C9008E3231 /* Preview Content */,
@@ -128,6 +129,16 @@
 				FBC9AF24260026CA008E3231 /* Info.plist */,
 			);
 			path = "travel-aplicationUITests";
+			sourceTree = "<group>";
+		};
+		FBC9AF42260416BB008E3231 /* TravelAplication */ = {
+			isa = PBXGroup;
+			children = (
+				FBC9AF07260026C5008E3231 /* ContentView.swift */,
+				FBC9AF05260026C5008E3231 /* travel_aplicationApp.swift */,
+				FBC9AF43260416F9008E3231 /* travel_aplication2.swift */,
+			);
+			path = TravelAplication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBC9AF08260026C5008E3231 /* ContentView.swift in Sources */,
+				FBC9AF44260416F9008E3231 /* travel_aplication2.swift in Sources */,
 				FBC9AF06260026C5008E3231 /* travel_aplicationApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
