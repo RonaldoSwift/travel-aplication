@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  travel-aplication
-//
-//  Created by Ronaldo Andre Vargas Huaman on 15/03/21.
-//
-
 
 //
 //  ContentView.swift
@@ -14,7 +7,6 @@
 //
 
 import SwiftUI
-
 
 struct ContentView: View {
     var imagenesTab: [ImagenTab] = [
@@ -32,10 +24,12 @@ struct ContentView: View {
     @State var username: String = ""
     @State private var index: Int = 0
     @State private var tapped: Bool = false
+    @State var showSheetView = false
+    @State var aumentando = 0
     
     var body: some View {
+        
         ZStack{
-            Color.orange
             VStack(spacing: 10){
                   readNowView()
                   newArticlesView()
@@ -43,11 +37,11 @@ struct ContentView: View {
                   imagenesView()
                 
                 HStack(spacing: 0){
-                    Pill(index: self.$index, tapped: $tapped, key: 0, label: "One")
+                    Pill(index: self.$index, tapped: $tapped, key: 0, label: "😊")
                     Spacer()
-                    Pill(index: self.$index, tapped: $tapped, key: 1, label: "Two")
+                    Pill(index: self.$index, tapped: $tapped, key: 1, label: "😊")
                     Spacer()
-                    Pill(index: self.$index, tapped: $tapped, key: 2, label: "Three")
+                    Pill(index: self.$index, tapped: $tapped, key: 2, label: "😊")
                 }
                 .padding(.vertical, 8)
                 .padding(.horizontal, 28)
@@ -61,43 +55,59 @@ struct ContentView: View {
                     }
                 }
             }
-            .padding(.horizontal, 10)
+            .padding(EdgeInsets(top: 40, leading: 10, bottom: 0 , trailing: 10))
             
         }
+       
+        .background(Color("blancoNaranja"))
+        .edgesIgnoringSafeArea(.vertical)
+        .sheet(isPresented: $showSheetView) {
+            travel_aplication2( showSheetView: $showSheetView)
+                }
     }
     
     func readNowView() -> some View {
-        return HStack{
-            Image("Rectangulo70")
-                .resizable()
-                .frame(width: 55, height: 55)
-            VStack(alignment:.leading){
-                Text("Travel to Africa")
-                    .font(.title2)
-                    .foregroundColor(Color.black)
-                HStack{
-                    Image(systemName: "eye.fill")
-                    Text("Added in Read List")
-                }.foregroundColor(Color.orange)
+        return ZStack{
+            HStack{
+                Image("Rectangulo70")
+                    .resizable()
+                    .frame(width: 55, height: 55)
+                VStack(alignment:.leading, spacing: 0){
+                    Text("Travel to Africa")
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(Color.black)
+                    HStack{
+                        Image("Show")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                        Text("Added in Read List")
+                    }
+                    .foregroundColor(Color.orange)
+                }
+                .frame(width: 160, height: 50)
+                
+                Button(action: {
+                    aumentando = aumentando + 1
+                }, label: {
+                    Text("Read Now")
+                        .bold()
+                })
+                .foregroundColor(Color.black)
+                .font(.title2)
             }
-            Button(action: {print("xD")}, label: {
-                Text("Read Now")
-            })
-            .foregroundColor(Color.black)
-            .font(.title2)
+            .font(.headline)
+            .padding(10)
         }
-        .font(.headline)
-        .padding(9)
-        .frame(width: 365, height: 64)
         .background(Color.white)
         .cornerRadius(20.0)
-        .padding(1)
     }
     
     func newArticlesView() -> some View{
         return VStack(alignment: .leading){
             Text("New Articles")
-                .font(.title2)
+                .font(.system(size: 20))
+                .bold()
                 .padding()
                 .frame(height: 17)
             ScrollView(.horizontal, showsIndicators: false, content: {
@@ -115,6 +125,8 @@ struct ContentView: View {
             })
             
         }
+        .shadow(radius: 20 )
+        
     }
     
     func labelTexView() -> some View{
@@ -125,10 +137,10 @@ struct ContentView: View {
                     .frame(width: 25.02, height: 25.02)
                     .foregroundColor(Color.orange)
                 ZStack(alignment: .leading) {
-                        if username.isEmpty { Text("Your username").foregroundColor(.gray) }
-                        TextField("", text: $username)
-                            .foregroundColor(Color.black)
-                    }
+                    if username.isEmpty { Text("Search country or list \(aumentando)").foregroundColor(.gray) }
+                    TextField("", text: $username)
+                        .foregroundColor(Color.black)
+                }
             }
             .font(.headline)
             .padding(10)
@@ -144,11 +156,11 @@ struct ContentView: View {
         }
     }
     
-    
     func imagenesView() -> some View{
         return ScrollView(.horizontal, showsIndicators: false, content: {
             HStack{
                 ForEach(imagenesTab, id: \.id){ imagenenTab in
+                    
                     ZStack{
                         Image(imagenenTab.image)
                             .resizable()
@@ -164,9 +176,13 @@ struct ContentView: View {
                         descripcionDeViajeView(imagenenTab: imagenenTab)
                     }
                     .frame(width: 320)
+                    .onTapGesture{
+                        self.showSheetView.toggle()
+                    }
                 }
             }
-        })
+        })        .shadow(radius: 20 )
+        
     }
     
     func descripcionDeViajeView(imagenenTab: ImagenTab ) -> some View {
@@ -208,7 +224,6 @@ struct ContentView: View {
             .animation(.linear(duration: 0.2))
     }
 }
-
 
 struct Pill: View {
     @Binding var index: Int
